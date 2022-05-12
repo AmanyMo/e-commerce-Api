@@ -1,6 +1,14 @@
+using e_commerce_Api.Models;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+//add service to connetion String
+builder.Services.AddDbContext<ModelContext>((options) =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("eCommerce"));
+});
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

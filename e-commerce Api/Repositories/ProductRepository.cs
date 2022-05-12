@@ -15,38 +15,60 @@ namespace e_commerce_Api.Repositories
         public void Add(Products product)
         {
             throw new NotImplementedException();
-
-            //return _context.Products.ToList();
+            //_context.Products.Add(product);
+            
         }
 
         public void Delete(int prod_Id)
         {
             throw new NotImplementedException();
-        }
+          //Products prod=  _context.Products.Find(prod_Id);
+          //  _context.Products.Remove(prod);
 
-        public void Dispose()
-        {
-            throw new NotImplementedException();
+
         }
 
         public IEnumerable<Products> GetAll()
         {
             throw new NotImplementedException();
+            //return _context.Products.ToList();
         }
 
         public Products GetById(int id)
         {
             throw new NotImplementedException();
+            //return _context.Products.Find(id);
         }
 
         public void Save()
         {
             throw new NotImplementedException();
+            //_context.SaveChanges();
         }
 
         public void Update(Products product)
         {
             throw new NotImplementedException();
+            //_context.Entry(product).State = EntityState.Modified;
+        }
+
+
+        private bool disposed = false;
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!this.disposed)
+            {
+                if (disposing)
+                {
+                    _context.Dispose();
+                }
+            }
+            this.disposed = true;
+        }
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
     }
 }
