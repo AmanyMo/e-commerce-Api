@@ -1,5 +1,4 @@
-﻿using e_commerce_Api.Models;
-namespace e_commerce_Api.Interfaces
+﻿namespace e_commerce_Api.Interfaces
 {
     public interface IProduct : IDisposable
     {

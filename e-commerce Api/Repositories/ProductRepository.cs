@@ -1,5 +1,4 @@
-﻿
-using e_commerce_Api.Interfaces;
+﻿using e_commerce_Api.Interfaces;
 using e_commerce_Api.Models;
 using Microsoft.EntityFrameworkCore;
 

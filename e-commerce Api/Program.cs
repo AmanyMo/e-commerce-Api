@@ -1,9 +1,12 @@
-using e_commerce_Api.Models;
-using Microsoft.EntityFrameworkCore;
+global using e_commerce_Api.Data;
+
+global using Microsoft.EntityFrameworkCore;
+global using e_commerce_Api.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
 //add service to connetion String
 builder.Services.AddDbContext<ModelContext>((options) =>
 {
