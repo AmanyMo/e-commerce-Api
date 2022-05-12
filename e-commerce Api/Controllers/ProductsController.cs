@@ -10,9 +10,23 @@ namespace e_commerce_Api.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
+       private readonly IProduct _proRepoContext;
+        
         public ProductsController()
         {
+            _proRepoContext = new ProductRepository(new ModelContext());
+            
+        } 
 
+        [HttpGet]
+        public   ActionResult<IEnumerable<Products>> GetAllProducts()
+        {
+            IEnumerable<Products> products = _proRepoContext.GetAll();
+            return Ok(products);
         }
+       
+       
+       
+
     }
 }

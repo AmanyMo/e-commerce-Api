@@ -1,6 +1,6 @@
 ﻿namespace e_commerce_Api.Interfaces
 {
-    public interface IProduct : IDisposable
+    public interface IProduct 
     {
         IEnumerable<Products> GetAll();
         Products GetById(int id);

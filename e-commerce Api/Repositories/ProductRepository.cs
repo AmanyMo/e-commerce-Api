@@ -8,40 +8,26 @@ namespace e_commerce_Api.Repositories
     public class ProductRepository : IProduct
     {
         private readonly ModelContext _context;
+      
         public ProductRepository(ModelContext context)
         {
             _context = context;
         }
       
 
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Products>>> GetAll()
+        public IEnumerable<Products> GetAll()
         {
-            return await _context.Products.ToListAsync();          
+            return _context.Products.ToList();          
            
         }
 
-        public async Task<Products> GetById(int id)
+        public  Products GetById(int id)
         {
-            Products prod=new Products();
-            if (id >= 1)
-            {
-                 prod = await _context.Products.FindAsync(id);
-
-            }
-            if (prod != null)
-            {
-                return prod;
-            }
-            else
-                return prod;
-           
+            return _context.Products.Find(id);
         }
         public void Add(Products product)
         {
             _context.Products.Add(product);
-
-
         }
         public void Update(Products product)
         {
@@ -82,14 +68,6 @@ namespace e_commerce_Api.Repositories
             GC.SuppressFinalize(this);
         }
 
-        IEnumerable<Products> IProduct.GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        Products IProduct.GetById(int id)
-        {
-            throw new NotImplementedException();
-        }
+       
     }
 }

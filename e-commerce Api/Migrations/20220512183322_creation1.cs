@@ -4,7 +4,7 @@
 
 namespace e_commerce_Api.Migrations
 {
-    public partial class craetionProdCatsDBContext : Migration
+    public partial class creation1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -34,22 +34,22 @@ namespace e_commerce_Api.Migrations
                     Quantity = table.Column<int>(type: "int", nullable: false),
                     Featured = table.Column<int>(type: "int", nullable: false),
                     Cat_Id = table.Column<int>(type: "int", nullable: false),
-                    CategoriesNavCategoryID = table.Column<int>(type: "int", nullable: true)
+                    CategoriesCategoryID = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Products", x => x.ProductID);
                     table.ForeignKey(
-                        name: "FK_Products_Categories_CategoriesNavCategoryID",
-                        column: x => x.CategoriesNavCategoryID,
+                        name: "FK_Products_Categories_CategoriesCategoryID",
+                        column: x => x.CategoriesCategoryID,
                         principalTable: "Categories",
                         principalColumn: "CategoryID");
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Products_CategoriesNavCategoryID",
+                name: "IX_Products_CategoriesCategoryID",
                 table: "Products",
-                column: "CategoriesNavCategoryID");
+                column: "CategoriesCategoryID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

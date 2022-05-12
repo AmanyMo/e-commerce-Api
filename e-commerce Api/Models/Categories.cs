@@ -8,7 +8,8 @@ namespace e_commerce_Api.Models
         public int CategoryID { get; set; }
         [Required]
         public string Name { get; set; } = string.Empty;
-        public ICollection<Products>? ProductList { get; set; }
+
+        public virtual ICollection<Products>? ProductList { get; set; }
 
     }
 }

@@ -12,8 +12,8 @@ using e_commerce_Api.Data;
 namespace e_commerce_Api.Migrations
 {
     [DbContext(typeof(ModelContext))]
-    [Migration("20220512145107_craetionProdCatsDBContext")]
-    partial class craetionProdCatsDBContext
+    [Migration("20220512183322_creation1")]
+    partial class creation1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -53,7 +53,7 @@ namespace e_commerce_Api.Migrations
                         .IsRequired()
                         .HasColumnType("int");
 
-                    b.Property<int?>("CategoriesNavCategoryID")
+                    b.Property<int?>("CategoriesCategoryID")
                         .HasColumnType("int");
 
                     b.Property<int>("Featured")
@@ -81,18 +81,16 @@ namespace e_commerce_Api.Migrations
 
                     b.HasKey("ProductID");
 
-                    b.HasIndex("CategoriesNavCategoryID");
+                    b.HasIndex("CategoriesCategoryID");
 
                     b.ToTable("Products");
                 });
 
             modelBuilder.Entity("e_commerce_Api.Models.Products", b =>
                 {
-                    b.HasOne("e_commerce_Api.Models.Categories", "CategoriesNav")
+                    b.HasOne("e_commerce_Api.Models.Categories", null)
                         .WithMany("ProductList")
-                        .HasForeignKey("CategoriesNavCategoryID");
-
-                    b.Navigation("CategoriesNav");
+                        .HasForeignKey("CategoriesCategoryID");
                 });
 
             modelBuilder.Entity("e_commerce_Api.Models.Categories", b =>

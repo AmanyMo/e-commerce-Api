@@ -3,9 +3,8 @@ namespace e_commerce_Api.Models
 {
     public enum FeaturesOption
     {
-        Featured,
-        NotFeatured
-
+        NotFeatured,
+        Featured
     }
     public class Products
     {
@@ -25,10 +24,12 @@ namespace e_commerce_Api.Models
 
         [Required]
         public FeaturesOption? Featured { get; set; }
-        [Required]
-        public int? Cat_Id { get; set; }
 
-        public Categories? CategoriesNav { get; set; }
+        [Required]
+        
+        public int? Cat_Id { get; set; }
+        public Categories categories { get; set; }
+
 
 
 
