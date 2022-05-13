@@ -2,15 +2,11 @@
 {
     public interface IProduct 
     {
-        IEnumerable<Products> GetAll();
-        Products GetById(int id);
-        void Add(Products product);
-        void Update(Products product);
-
-        void Delete(int prod_Id);
-
-        void Save();
-
+        Task<IEnumerable<Products>> GetAll();
+        Task<Products> GetById(int id);
+        Task<Products> Add(Products product);
+        Task<Products> Update(Products product);
+        bool Delete(int prod_Id);
 
     }
 }

@@ -1,7 +1,5 @@
-﻿using e_commerce_Api.Interfaces;
-using e_commerce_Api.Models;
+﻿
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace e_commerce_Api.Repositories
 {
@@ -13,42 +11,63 @@ namespace e_commerce_Api.Repositories
         {
             _context = context;
         }
-      
-
-        public IEnumerable<Products> GetAll()
+        public async Task<IEnumerable<Products>> GetAll()
         {
-            return _context.Products.ToList();          
-           
+            return await _context.Products.ToListAsync();
         }
-
-        public  Products GetById(int id)
+        public async Task<Products> GetById(int id)
         {
-            return _context.Products.Find(id);
+            var product = await _context.Products.FindAsync(id);
+                return product;
         }
-        public void Add(Products product)
+        public async Task<Products> Add(Products product)
         {
-            _context.Products.Add(product);
+            var result = _context.Products.AddAsync(product).Result;
+            var num = await _context.SaveChangesAsync();
+            return result.Entity;
         }
-        public void Update(Products product)
+        public async Task<Products> Update(Products _product)
         {
-            _context.Entry(product).State = EntityState.Modified;
+             Products products =await _context.Products.AsNoTracking().SingleOrDefaultAsync(p=>p.ProductID==_product.ProductID);
+            if (products != null)
+            {
+                _context.Entry(_product).State = EntityState.Modified;
+                try
+                {
+                    int successRet = _context.SaveChangesAsync().Result;
+                    if (successRet == 1)
+                    {
+                        return _product;
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+                catch (Exception e)
+                {
+
+                    throw e.InnerException;
+                }
+
+            }
+            else
+                return products;
         }
-
-
-        public void Delete(int prod_Id)
+        public  bool Delete(int prod_Id)
         {
-            Products prod = _context.Products.Find(prod_Id);
-            _context.Products.Remove(prod);
+            var prod =  _context.Products.FindAsync(prod_Id).Result;
+            if (prod != null)
+            {
+                _context.Products.Remove(prod);
+               var ret=  _context.SaveChangesAsync().Result;
+                if (Convert.ToBoolean(ret) ) 
+                    return true;
+                
+            }
+            return false;
+
         }
-
-
-        public void Save()
-        {
-            _context.SaveChanges();
-        }
-
-       
-
 
         private bool disposed = false;
         protected virtual void Dispose(bool disposing)
@@ -68,6 +87,6 @@ namespace e_commerce_Api.Repositories
             GC.SuppressFinalize(this);
         }
 
-       
+
     }
 }

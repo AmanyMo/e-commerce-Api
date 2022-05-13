@@ -4,7 +4,7 @@
 
 namespace e_commerce_Api.Migrations
 {
-    public partial class creation1 : Migration
+    public partial class maza2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,7 +14,7 @@ namespace e_commerce_Api.Migrations
                 {
                     CategoryID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    CategoryName = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -27,29 +27,29 @@ namespace e_commerce_Api.Migrations
                 {
                     ProductID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ProdName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ProdDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Price = table.Column<int>(type: "int", nullable: false),
-                    ImagePath = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Quantity = table.Column<int>(type: "int", nullable: false),
-                    Featured = table.Column<int>(type: "int", nullable: false),
-                    Cat_Id = table.Column<int>(type: "int", nullable: false),
-                    CategoriesCategoryID = table.Column<int>(type: "int", nullable: true)
+                    ProductName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ProductDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ProductPrice = table.Column<int>(type: "int", nullable: false),
+                    ProductImage = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ProductQuantity = table.Column<int>(type: "int", nullable: false),
+                    ProductFeatured = table.Column<int>(type: "int", nullable: false),
+                    Category_Id = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Products", x => x.ProductID);
                     table.ForeignKey(
-                        name: "FK_Products_Categories_CategoriesCategoryID",
-                        column: x => x.CategoriesCategoryID,
+                        name: "FK_Products_Categories_Category_Id",
+                        column: x => x.Category_Id,
                         principalTable: "Categories",
-                        principalColumn: "CategoryID");
+                        principalColumn: "CategoryID",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Products_CategoriesCategoryID",
+                name: "IX_Products_Category_Id",
                 table: "Products",
-                column: "CategoriesCategoryID");
+                column: "Category_Id");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

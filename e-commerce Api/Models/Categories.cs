@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace e_commerce_Api.Models
 {
@@ -7,9 +8,10 @@ namespace e_commerce_Api.Models
         [Key]
         public int CategoryID { get; set; }
         [Required]
-        public string Name { get; set; } = string.Empty;
+        public string CategoryName { get; set; } = string.Empty;
 
-        public virtual ICollection<Products>? ProductList { get; set; }
+        [JsonIgnore]
+        public  ICollection<Products> ProductList { get; set; }
 
     }
 }

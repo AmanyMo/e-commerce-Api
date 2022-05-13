@@ -12,8 +12,8 @@ using e_commerce_Api.Data;
 namespace e_commerce_Api.Migrations
 {
     [DbContext(typeof(ModelContext))]
-    [Migration("20220512183322_creation1")]
-    partial class creation1
+    [Migration("20220513134601_maza2")]
+    partial class maza2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -32,7 +32,7 @@ namespace e_commerce_Api.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoryID"), 1L, 1);
 
-                    b.Property<string>("Name")
+                    b.Property<string>("CategoryName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -49,48 +49,49 @@ namespace e_commerce_Api.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductID"), 1L, 1);
 
-                    b.Property<int?>("Cat_Id")
+                    b.Property<int?>("Category_Id")
                         .IsRequired()
                         .HasColumnType("int");
 
-                    b.Property<int?>("CategoriesCategoryID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Featured")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ImagePath")
+                    b.Property<string>("ProductDescription")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("Price")
+                    b.Property<int?>("ProductFeatured")
                         .IsRequired()
                         .HasColumnType("int");
 
-                    b.Property<string>("ProdDescription")
+                    b.Property<string>("ProductImage")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProductName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ProdName")
+                    b.Property<int?>("ProductPrice")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("int");
 
-                    b.Property<int?>("Quantity")
+                    b.Property<int?>("ProductQuantity")
                         .IsRequired()
                         .HasColumnType("int");
 
                     b.HasKey("ProductID");
 
-                    b.HasIndex("CategoriesCategoryID");
+                    b.HasIndex("Category_Id");
 
                     b.ToTable("Products");
                 });
 
             modelBuilder.Entity("e_commerce_Api.Models.Products", b =>
                 {
-                    b.HasOne("e_commerce_Api.Models.Categories", null)
+                    b.HasOne("e_commerce_Api.Models.Categories", "Categories")
                         .WithMany("ProductList")
-                        .HasForeignKey("CategoriesCategoryID");
+                        .HasForeignKey("Category_Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Categories");
                 });
 
             modelBuilder.Entity("e_commerce_Api.Models.Categories", b =>
