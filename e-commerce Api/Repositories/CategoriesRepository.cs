@@ -1,20 +1,4 @@
-﻿
-
-//        public async Task<Categories> Update(Categories category)
-//        {
-//              _context.Entry(category).State = EntityState.Modified;
-//            await _context.SaveChangesAsync();
-//            return category;
-
-//        }
-
-//    }
-//}
-
-
-using Microsoft.AspNetCore.Mvc;
-
-namespace e_commerce_Api.Repositories
+﻿namespace e_commerce_Api.Repositories
 {
     public class CategoriesRepository : ICategories
     {

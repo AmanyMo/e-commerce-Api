@@ -1,7 +1,4 @@
-﻿
-using Microsoft.AspNetCore.Mvc;
-
-namespace e_commerce_Api.Repositories
+﻿namespace e_commerce_Api.Repositories
 {
     public class ProductRepository : IProduct
     {

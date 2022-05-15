@@ -14,8 +14,8 @@ namespace e_commerce_Api.Models
         [Required]
         public string ProductDescription { get; set; }
         [Required]
-        public int? ProductPrice { get; set; }
-        public string ProductImage { get; set; }
+        public double ProductPrice { get; set; }   
+        public byte[] ProductImage { get; set; }
         [Required]
         public int? ProductQuantity { get; set; }
         [Required]

@@ -8,10 +8,10 @@ namespace e_commerce_Api.Models
         [Key]
         public int CategoryID { get; set; }
         [Required]
-        public string CategoryName { get; set; } = string.Empty;
+        public string CategoryName { get; set; }
 
         [JsonIgnore]
-        public  ICollection<Products> ProductList { get; set; }
+        public  virtual ICollection<Products> ProductList { get; set; }
 
     }
 }
