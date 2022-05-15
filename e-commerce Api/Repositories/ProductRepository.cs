@@ -33,23 +33,16 @@
                 {
                     int successRet = _context.SaveChangesAsync().Result;
                     if (successRet == 1)
-                    {
-                        return _product;
-                    }
-                    else
-                    {
-                        return null;
-                    }
+                        return _product;        
                 }
                 catch (Exception e)
                 {
-
                     throw e.InnerException;
                 }
 
             }
-            else
-                return products;
+
+            return products;
         }
         public  bool Delete(int prod_Id)
         {

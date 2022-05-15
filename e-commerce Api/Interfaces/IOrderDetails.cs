@@ -10,7 +10,6 @@
         Task<IEnumerable<IOrderDetails>> GetAllProductsForaUser(int userId);
         Task<IEnumerable<IOrderDetails>> GetAllOrdersOfaProduct(int productId);
 
-
         Task<OrderDetails> Add(OrderDetails orderDetail);
         Task<OrderDetails> Update(int orderId, OrderDetails orderDetail);
         bool DeleteAProductFromOrder(int order_Id, int product_Id);

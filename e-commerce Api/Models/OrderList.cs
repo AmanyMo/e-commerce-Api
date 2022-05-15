@@ -16,6 +16,7 @@ namespace e_commerce_Api.Models
         public string OrderAddress { get; set; }
         [Required]
         public double OrderTotalPrice { get; set; }
+
         [ForeignKey("User")]
         public int User_Id { get; set; }
 

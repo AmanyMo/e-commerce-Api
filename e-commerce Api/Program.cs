@@ -16,7 +16,11 @@ builder.Services.AddDbContext<ModelContext>((options) =>
 });
 //how to create obj from Iproduct service
 builder.Services.AddScoped<IProduct, ProductRepository>();
-builder.Services.AddScoped<ICategories, CategoriesRepository>(); 
+builder.Services.AddScoped<ICategories, CategoriesRepository>();
+builder.Services.AddScoped<IOrderList, OrderListRepository>();
+builder.Services.AddScoped<IOrderDetails, OrderDetailsRepository>();
+builder.Services.AddScoped<IUser,UserRepository>();
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

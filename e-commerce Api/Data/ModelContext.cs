@@ -17,7 +17,7 @@
 
         public DbSet<Categories> Categories { get; set; }
         public DbSet<Products> Products { get; set; }
-        public DbSet<OrderList> orderList { get; set; }
+        public DbSet<OrderList> OrderList { get; set; }
         public DbSet<OrderDetails> OrderDetails { get; set; }
         public DbSet<User> Users { get; set; }
 
