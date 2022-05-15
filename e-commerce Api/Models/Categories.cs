@@ -7,7 +7,7 @@ namespace e_commerce_Api.Models
     {
         [Key]
         public int CategoryID { get; set; }
-        [Required]
+        [Required,StringLength(20)]
         public string CategoryName { get; set; }
 
         [JsonIgnore]

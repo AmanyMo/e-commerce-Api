@@ -9,13 +9,14 @@ namespace e_commerce_Api.Models
     {
         [Key]
         public int ProductID { get; set; }
-        [Required]  
+        [Required ,StringLength(20)]  
         public string ProductName { get; set; }
         [Required]
         public string ProductDescription { get; set; }
         [Required]
         public double ProductPrice { get; set; }   
-        public byte[] ProductImage { get; set; }
+        [Column(TypeName ="varbinary(max)")]
+        public string ProductImage { get; set; }
         [Required]
         public int? ProductQuantity { get; set; }
         [Required]
