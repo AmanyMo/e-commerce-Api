@@ -12,7 +12,6 @@ namespace e_commerce_Api.Repositories
         public async Task<IEnumerable<OrderDetails>> GetAll()
         {
             return await _context.OrderDetails.ToListAsync();
-
         }
 
         public async Task<OrderDetails> Add(OrderDetails orderDetail)
@@ -99,31 +98,33 @@ namespace e_commerce_Api.Repositories
 
        
 
-        public Task<IEnumerable<IOrderDetails>> GetAllOrdersOfaProduct(int productId)
+        public  async Task<IEnumerable<OrderDetails>> GetAllOrdersOfaProduct(int productId)
         {
-            
+            return  await _context.OrderDetails.Where(o => o.ProductID == productId).ToListAsync();
+           
         }
 
-        public Task<IEnumerable<IOrderDetails>> GetAllProductsForaUser(int userId)
+        public async Task<IEnumerable<OrderDetails>> GetAllOrdersForaUser(int userId)
         {
-            throw new NotImplementedException();
+            return await _context.OrderDetails.Where(o => o.UserID == userId).ToListAsync();
         }
 
-        public Task<OrderDetails> GetuserOfaProduct(int orderId, int productId)
+        public async Task<OrderDetails> GetuserOfaProduct(int orderId, int productId)
         {
-            throw new NotImplementedException();
+            return await _context.OrderDetails
+                .FirstOrDefaultAsync(o => o.OrderID == orderId&& o.ProductID==productId);
+
         }
 
+        public async Task<IEnumerable<OrderDetails>> GetUsersOfaProduct(int productId)
+        {
+            return await _context.OrderDetails
+                .Where(o =>  o.ProductID == productId).ToListAsync();
+        }
         public Task<IEnumerable<OrderDetails>> GetuserOrder(int orderId, int userId)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<OrderDetails>> GetUsersOfaProduct(int productId)
-        {
-            throw new NotImplementedException();
-        }
-
-     
     }
 }

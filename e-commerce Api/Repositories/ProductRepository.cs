@@ -17,6 +17,11 @@
             var product = await _context.Products.FindAsync(id);
                 return product;
         }
+        public async Task<IEnumerable<Products>> GetAllProductsCategory(int category_Id)
+        {
+            IEnumerable<Products> products=await  _context.Products.Where(p=>p.Category_Id==category_Id).ToListAsync();
+            return products;
+        }
         public async Task<Products> Add(Products product)
         {
             var result = _context.Products.AddAsync(product).Result;
@@ -77,6 +82,6 @@
             GC.SuppressFinalize(this);
         }
 
-
+        
     }
 }

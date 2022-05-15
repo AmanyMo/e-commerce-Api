@@ -2,9 +2,25 @@
 {
     public class UserRepository : IUser
     {
-        public Task<User> Add(User order)
+        private readonly ModelContext _context;
+        public UserRepository(ModelContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
+        }
+        public  User Add(User user)
+        {
+            _context.Users.AddAsync(user);
+            try
+            {
+              int retval=  _context.SaveChangesAsync().Result;
+                if (Convert.ToBoolean(retval))
+                    return user;
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                throw;
+            }
+            return null;
         }
 
         public bool Delete(int user_Id)
@@ -12,19 +28,35 @@
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<User>> GetAll()
+        public async Task<IEnumerable<User>> GetAll()
         {
-            throw new NotImplementedException();
+            return await _context.Users.ToListAsync();
         }
 
-        public Task<User> GetById(int id)
+        public async Task<User> GetById(int id)
         {
-            throw new NotImplementedException();
+            var user = await _context.Users.FindAsync(id);
+            return user;
         }
 
-        public Task<User> Update(int userId, User user)
+        public async Task<User> Update(int userId, User _user)
         {
-            throw new NotImplementedException();
+            User user = await _context.Users.FindAsync(userId);
+            if (user != null)
+            {
+                _context.Entry(_user).State = EntityState.Modified;
+                try
+                {
+                    int successRet = _context.SaveChangesAsync().Result;
+                    if (successRet == 1)
+                        return _user;
+                }
+                catch (DbUpdateConcurrencyException e)
+                {
+                    throw e.InnerException;
+                }
+            }
+            return user;
         }
     }
 }
