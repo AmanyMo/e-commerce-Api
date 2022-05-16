@@ -2,17 +2,12 @@
 {
     public class ModelContext : DbContext
     {
-        //public ModelContext()
-        //{
-        //}
         public ModelContext(DbContextOptions<ModelContext> options) : base(options)
         {
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<OrderDetails>().HasKey("OrderID", "ProductID", "UserID");
-            //modelBuilder.Entity<OrderDetails>().Hasr
-                
+            modelBuilder.Entity<OrderDetails>().HasKey("OrderID", "ProductID", "UserID");                
         }
 
         public DbSet<Categories> Categories { get; set; }

@@ -96,7 +96,7 @@ namespace e_commerce_Api.Migrations
 
                     b.HasIndex("User_Id");
 
-                    b.ToTable("orderList");
+                    b.ToTable("OrderList");
                 });
 
             modelBuilder.Entity("e_commerce_Api.Models.Products", b =>

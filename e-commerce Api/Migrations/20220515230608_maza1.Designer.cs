@@ -12,7 +12,7 @@ using e_commerce_Api.Data;
 namespace e_commerce_Api.Migrations
 {
     [DbContext(typeof(ModelContext))]
-    [Migration("20220515124120_maza1")]
+    [Migration("20220515230608_maza1")]
     partial class maza1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -98,7 +98,7 @@ namespace e_commerce_Api.Migrations
 
                     b.HasIndex("User_Id");
 
-                    b.ToTable("orderList");
+                    b.ToTable("OrderList");
                 });
 
             modelBuilder.Entity("e_commerce_Api.Models.Products", b =>

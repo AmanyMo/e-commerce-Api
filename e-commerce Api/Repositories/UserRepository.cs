@@ -7,9 +7,9 @@
         {
             _context = context;
         }
-        public  User Add(User user)
+        public async Task<User> Add(User user)
         {
-            _context.Users.AddAsync(user);
+            await _context.Users.AddAsync(user);
             try
             {
               int retval=  _context.SaveChangesAsync().Result;
@@ -25,7 +25,15 @@
 
         public bool Delete(int user_Id)
         {
-            throw new NotImplementedException();
+            User user = _context.Users.FindAsync(user_Id).Result;
+            if (user != null)
+            {
+                _context.Users.Remove(user);
+                int ret = _context.SaveChangesAsync().Result;
+                if (Convert.ToBoolean(ret))
+                    return true;
+            }
+            return false;
         }
 
         public async Task<IEnumerable<User>> GetAll()

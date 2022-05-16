@@ -47,6 +47,25 @@ namespace e_commerce_Api.Controllers
 
         }
 
+        [HttpGet("categoriesproducts")]
+        public ActionResult<IEnumerable<Products>> GetAllProductsOfCategory(int category_Id)
+        {
+            if (category_Id<=0)
+            {
+                return BadRequest("invalid category id");
+            }
+            else
+            {
+                IEnumerable<Products> productsList=_proRepoContext.GetAllProductsCategory(category_Id).Result;
+                if (productsList.Any())
+                {
+                    return Ok(productsList);
+                }
+                return NoContent();
+            }
+
+        }
+
         [HttpPost]
         public ActionResult AddNewProduct(Products products)
         {

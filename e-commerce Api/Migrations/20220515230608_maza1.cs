@@ -67,7 +67,7 @@ namespace e_commerce_Api.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "orderList",
+                name: "OrderList",
                 columns: table => new
                 {
                     OrderID = table.Column<int>(type: "int", nullable: false)
@@ -79,9 +79,9 @@ namespace e_commerce_Api.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_orderList", x => x.OrderID);
+                    table.PrimaryKey("PK_OrderList", x => x.OrderID);
                     table.ForeignKey(
-                        name: "FK_orderList_Users_User_Id",
+                        name: "FK_OrderList_Users_User_Id",
                         column: x => x.User_Id,
                         principalTable: "Users",
                         principalColumn: "UserID",
@@ -96,20 +96,20 @@ namespace e_commerce_Api.Migrations
                     ProductID = table.Column<int>(type: "int", nullable: false),
                     UserID = table.Column<int>(type: "int", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Quantity = table.Column<int>(type: "int", nullable: false)
-                   
+                    Quantity = table.Column<int>(type: "int", nullable: false),
+                    ProductsProductID = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_OrderDetails", x => new { x.OrderID, x.ProductID, x.UserID });
                     table.ForeignKey(
-                        name: "FK_OrderDetails_orderList_OrderID",
+                        name: "FK_OrderDetails_OrderList_OrderID",
                         column: x => x.OrderID,
-                        principalTable: "orderList",
+                        principalTable: "OrderList",
                         principalColumn: "OrderID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_OrderDetails_ProductID",
+                        name: "FK_OrderDetails_Products_sProductID",
                         column: x => x.ProductID,
                         principalTable: "Products",
                         principalColumn: "ProductID");
@@ -132,8 +132,8 @@ namespace e_commerce_Api.Migrations
                 column: "UserID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_orderList_User_Id",
-                table: "orderList",
+                name: "IX_OrderList_User_Id",
+                table: "OrderList",
                 column: "User_Id");
 
             migrationBuilder.CreateIndex(
@@ -148,7 +148,7 @@ namespace e_commerce_Api.Migrations
                 name: "OrderDetails");
 
             migrationBuilder.DropTable(
-                name: "orderList");
+                name: "OrderList");
 
             migrationBuilder.DropTable(
                 name: "Products");
