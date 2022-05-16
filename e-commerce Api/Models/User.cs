@@ -19,6 +19,8 @@ namespace e_commerce_Api.Models
         public byte[] UserImage { get; set; }
         [Required,StringLength(30,MinimumLength =6,ErrorMessage ="length should be between 6 and 30")]
         public string UserPassword { get; set; }
+
+        [NotMapped]
         [Required,Compare("UserPassword",ErrorMessage ="not match")]
         public string UserConfirmPassword { get; set; }
         [Required,DefaultValue("user"),StringLength(15)]

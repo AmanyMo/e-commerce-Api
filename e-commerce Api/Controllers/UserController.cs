@@ -67,13 +67,13 @@ namespace e_commerce_Api.Controllers
         }
 
         [HttpDelete]
-        public ActionResult DeleteUser(int user_id)
+        public ActionResult DeleteUser(int id)
         {
-            if (user_id <= 0)
+            if (id <= 0)
             {
                 return BadRequest();
             }
-            bool ret = _userContext.Delete(user_id);
+            bool ret = _userContext.Delete(id);
             if (ret)
             {
                 return Ok("deleted");

@@ -55,8 +55,7 @@ namespace e_commerce_Api.Repositories
         public async Task<OrderDetails> Update(int orderId, int productId, int userId, OrderDetails orderDetail)
         {
             //OrderDetails order = await _context.OrderDetails.FindAsync(orderId);
-            OrderDetails order = await _context.OrderDetails
-                .SingleOrDefaultAsync(o=>o.OrderID==orderId&&o.UserID==userId &&o.ProductID==productId);
+            OrderDetails order = await _context.OrderDetails.AsNoTracking().SingleOrDefaultAsync(o=>o.OrderID==orderId&&o.UserID==userId &&o.ProductID==productId);
 
             if (order != null)
             {
