@@ -23,7 +23,7 @@ namespace e_commerce_Api.Controllers
             }
             return NotFound();
         }
-        [HttpGet("id")]
+        [HttpGet("{id}")]
         public ActionResult<IEnumerable<User>> GetById(int id)
         {
             if (id<=0)
